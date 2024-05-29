@@ -8,7 +8,7 @@ where f1.length <= ALL(select f2.length from film f2
                       
 -- 2
 select f1.title, f1.length from film f1
-where f1.length <= ALL(select f2.length from film f2 where f1.film_id <> f2.film_id)
+where f1.length < ALL(select f2.length from film f2 where f1.film_id <> f2.film_id)
 and not exists(select * from film f2 where f2.film_id <> f1.film_id and f2.length <= f1.length);
 
 
