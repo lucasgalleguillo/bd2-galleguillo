@@ -22,6 +22,7 @@ VALUES (CURRENT_DATE(),
 	(SELECT MAX(staff_id) FROM staff WHERE store_id = 2));
 
 -- 3 
+SET SQL_SAFE_UPDATES = 0;
 UPDATE film
 SET release_year = CASE rating
                        WHEN 'G' THEN '2010'
