@@ -1,18 +1,18 @@
 -- 1
-SELECT CONCAT(c.first_name, ' ', c.last_name) AS full_name, a.address, ci.city FROM customer c
+SELECT CONCAT(c.first_name, ' ', c.last_name), a.address, ci.city FROM customer c
 INNER JOIN address a ON c.address_id = a.address_id
 INNER JOIN city ci ON a.city_id = ci.city_id
 INNER JOIN country co ON ci.country_id = co.country_id
 WHERE co.country = 'Argentina';
 
 -- 2
-SELECT f.title AS "Film Title", l.name AS "Language", CASE 
-	WHEN f.rating = 'G' THEN 'General Audiences'
-	WHEN f.rating = 'PG' THEN 'Parental Guidance Suggested'
-	WHEN f.rating = 'PG-13' THEN 'Parents Strongly Cautioned'
-	WHEN f.rating = 'R' THEN 'Restricted'
-	WHEN f.rating = 'NC-17' THEN 'Adults Only'
-	ELSE 'Not Rated' END AS "Rating"
+SELECT f.title, l.name, CASE 
+	WHEN f.rating = 'G' THEN 'G (GENERAL AUDIENCES) – ALL AGES ADMITTED.'
+	WHEN f.rating = 'PG' THEN 'PG (PARENTAL GUIDANCE SUGGESTED) – SOME MATERIAL MAY NOT BE SUITABLE FOR CHILDREN.'
+	WHEN f.rating = 'PG-13' THEN 'PG-13 (PARENTS STRONGLY CAUTIONED) – SOME MATERIAL MAY BE INAPPROPRIATE FOR CHILDREN UNDER 13.'
+	WHEN f.rating = 'R' THEN 'R (RESTRICTED) – UNDER 17 REQUIRES ACCOMPANYING PARENT OR ADULT GUARDIAN.'
+	WHEN f.rating = 'NC-17' THEN 'NC-17 (ADULTS ONLY) – NO ONE 17 AND UNDER ADMITTED.'
+	ELSE 'RATING' END AS "Rating"
 FROM film f
 INNER JOIN language l ON f.language_id = l.language_id;
 
